@@ -1,8 +1,8 @@
 #02 Insert and shift middle index of array
-<!-- Short summary or background information -->
+Create a function that will insert a value into the center of an array.
 
 ## Challenge
-<!-- Description of the challenge -->
+Create a function that will insert a value into the center of an array without using any built in methods. Make it a module so it may be reused. 
 
 ## Solution
 ![reverse array](./img/02_array_shift.jpg)
@@ -11,7 +11,7 @@
 Create a function to reverse and array
 
 ## Challenge
-Create a function to reverse an array without using any built in methods. Make this a module so it can be reused
+Create a function to reverse an array without using any built in methods. Make this a module so it can be reused.
 
 
 ## Solution
