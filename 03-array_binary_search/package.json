@@ -1,0 +1,14 @@
+{
+  "name": "03-array_binary_search",
+  "version": "1.0.0",
+  "description": "",
+  "main": "array_binary_search.js",
+  "scripts": {
+    "test": "jest **/*.test.js"
+  },
+  "author": "Sharon Miller",
+  "license": "ISC",
+  "dependencies": {
+    "jest": "^23.5.0"
+  }
+}
