@@ -34,7 +34,7 @@ describe('prepend tests', () => {
 });
 
 
-describe('prepend tests', () => {  
+describe('remove tests', () => {  
   test('should delete node', () => {
     const testList = new LinkedList();
     testList.append(7);
