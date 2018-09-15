@@ -55,7 +55,7 @@ class LinkedList {
       throw new Error('could not find a node to remove');
     }
   }
-  /* I tried this first 
+  /* QUESTION::: I tried this first after i whiteboarded it, is it close to being a solution?
    while (currentNode.next) {
   //   if (currentNode.next.value === value);
   //   console.log(value);
@@ -69,7 +69,7 @@ class LinkedList {
     let prev = null;
     let next = currentNode.next;
 
-    while(next) {
+    while (next) {
       currentNode.next = prev;
       prev = currentNode;
       currentNode = next;
@@ -78,7 +78,26 @@ class LinkedList {
     currentNode.next = prev;
     this.head = currentNode;
   }
+
+
+  // serialize is O(1)
+  serialize() {
+    return JSON.stringify(this);
+  }
+
+  //deserialize is O(n)
+  deserialize() {
+    this.head = listItem.head;
+    this.tail = listItem.tail;
+    this.length = listItem.length;
+
+    //QUESTION: i think i need to use static, why is it saying it is reserved. Static methods are used when we need a function bound to a class, but not to any object of that class. 
+    static deserialize(listObject) {
+    let newList = JSON.parse(listObject);
+    return new LinkedList(newList);
+  }
 }
+
 //add append, prepend, reverse, remove, serialize, deserialize 
 //add comments about big O for each method. 
 module.exports = LinkedList;

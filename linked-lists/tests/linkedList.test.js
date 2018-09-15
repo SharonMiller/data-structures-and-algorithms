@@ -58,3 +58,12 @@ describe('reverse tests', () => {
     expect(reverseList.head.value).toEqual(3);
   });
 });
+
+describe('serialize tests', () => {
+  test('', () => {
+    let linkedList = new LinkedList();
+    linkedList.append(1);
+    let actual = linkedList.serialize();
+    expect(typeof actual).toBe('string');
+  });
+});
