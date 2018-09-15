@@ -17,7 +17,7 @@ describe('linkedList.js', () => {
     expect(testList.head.next.value).toEqual(10);
   });
 });
-describe('prepend tests', () => {  
+describe('prepend tests', () => {
   const testList = new LinkedList();
   testList.append(5);
   test('should prepend node to to list', () => {
@@ -34,7 +34,7 @@ describe('prepend tests', () => {
 });
 
 
-describe('remove tests', () => {  
+describe('remove tests', () => {
   test('should delete node', () => {
     const testList = new LinkedList();
     testList.append(7);
@@ -44,5 +44,17 @@ describe('remove tests', () => {
     testList.remove(1);
     expect(testList.head.value).toEqual(7);
     expect(testList.head.next.value).toEqual(9);
+  });
+});
+
+describe('reverse tests', () => {
+  test('should reverse list order', () => {
+    let reverseList = new LinkedList();
+    reverseList.append(1);
+    reverseList.append(2);
+    reverseList.append(3);
+    console.log(reverseList);
+    reverseList.reverse();
+    expect(reverseList.head.value).toEqual(3);
   });
 });
