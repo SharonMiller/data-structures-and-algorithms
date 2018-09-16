@@ -59,11 +59,21 @@ describe('reverse tests', () => {
   });
 });
 
-describe('serialize tests', () => {
-  test('', () => {
+// describe('serialize tests', () => {
+//   test('', () => {
+//     let linkedList = new LinkedList();
+//     linkedList.append(1);
+//     let actual = linkedList.serialize();
+//     expect(typeof actual).toBe('string');
+//   });
+// });
+describe('insert before tests', () => {
+  test('should insert 3 before 2', () => {
     let linkedList = new LinkedList();
     linkedList.append(1);
-    let actual = linkedList.serialize();
-    expect(typeof actual).toBe('string');
+    linkedList.append(2);
+    linkedList.insertBefore(3, 2);
+    expect(linkedList.head.next.value).toEqual(2);
   });
 });
+

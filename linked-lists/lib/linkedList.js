@@ -80,23 +80,54 @@ class LinkedList {
   }
 
 
-  // serialize is O(1)
-  serialize() {
-    return JSON.stringify(this);
-  }
+  // // serialize is O(1)
+  // serialize() {
+  //   return JSON.stringify(this);
+  // }
 
   //deserialize is O(n)
-  deserialize() {
-    this.head = listItem.head;
-    this.tail = listItem.tail;
-    this.length = listItem.length;
+  // deserialize() {
+  //   this.head = listItem.head;
+  //   this.tail = listItem.tail;
+  //   this.length = listItem.length;
 
-    //QUESTION: i think i need to use static, why is it saying it is reserved. Static methods are used when we need a function bound to a class, but not to any object of that class. 
-    static deserialize(listObject) {
-    let newList = JSON.parse(listObject);
-    return new LinkedList(newList);
+  //   //QUESTION: i think i need to use static, why is it saying it is reserved. Static methods are used when we need a function bound to a class, but not to any object of that class. 
+  //   // static 
+  //   deserialize(listObject) {
+  //   let newList = JSON.parse(listObject);
+  //   return new LinkedList(newList);
+  // }
+
+  insertBefore(value, newVal) {
+    if (value === 0) {
+      this.prepend(newVal);
+
+    } else {
+      let curr = this.head;
+      let prev = null;
+
+      while (value !== curr.value) {
+        prev = curr;
+        curr = curr.next;
+      }
+
+      prev.next = new Node(newVal, curr);
+    }
+
+    this.length++;
   }
-}
+
+  insertAfter(value, newVal) {
+    let curr = this.head;
+    while (value !== curr.value) {
+      curr.next;
+    }
+    curr.next = new Node(newVal, curr.next);
+    this.length++;
+  }
+};
+
+
 
 //add append, prepend, reverse, remove, serialize, deserialize 
 //add comments about big O for each method. 
