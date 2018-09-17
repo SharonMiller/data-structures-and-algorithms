@@ -7,7 +7,9 @@ class LinkedList {
   constructor() {
     this.head = null;
     this.tail = null;
-    this.length = 0;
+    this.length = 1;
+    this.prev = null;
+    this.currentNode = null;
   }
 
   //append is 0(n)
@@ -24,7 +26,6 @@ class LinkedList {
     }
     currentNode.next = node;
     this.length++;
-    console.log(this);
   }
 
   prepend(value) {
@@ -42,7 +43,7 @@ class LinkedList {
     } else if (this.length) {
       let currentNode = this.head;
       for (let i = 0; i < offset - 1; i++) {
-        console.log(currentNode.next);
+        // console.log(currentNode.next);
         currentNode = currentNode.next;
       }
 
@@ -102,20 +103,27 @@ class LinkedList {
     if (value === 0) {
       this.prepend(newVal);
 
-    } else {
-      let curr = this.head;
-      let prev = null;
-
-      while (value !== curr.value) {
-        prev = curr;
-        curr = curr.next;
-      }
-
-      prev.next = new Node(newVal, curr);
     }
+    this.currentNode = this.head;
+    this.next = this.currentNode.next;
 
+    while (value !== this.currentNode.value && this.currentNode !== this.tail) {
+      this.prev = this.currentNode;
+      this.currentNode = this.next;
+      this.next = this.currentNode.next;
+    }
+    
+    if (value !== this.currentNode.value) {
+      throw new Error('not found');
+    }
+    let newNode = new Node(newVal);
+    newNode.next = this.current;
+    this.prev.next = newNode;
     this.length++;
+
   }
+
+
 
   insertAfter(value, newVal) {
     let curr = this.head;
@@ -125,7 +133,7 @@ class LinkedList {
     curr.next = new Node(newVal, curr.next);
     this.length++;
   }
-};
+}
 
 
 
