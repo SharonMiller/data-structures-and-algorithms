@@ -17,6 +17,7 @@ describe('linkedList.js', () => {
     expect(testList.head.next.value).toEqual(10);
   });
 });
+
 describe('prepend tests', () => {
   const testList = new LinkedList();
   testList.append(5);
@@ -25,7 +26,7 @@ describe('prepend tests', () => {
     // console.log(testList, 'i am testlist prepend');
     expect(testList.head.value).toEqual(6);
   });
-  test('should prepend node  an empty list', () => {
+  test('should prepend node an empty list', () => {
     let emptyList = new LinkedList();
     // console.log(emptyList, 'i am empty prepend');
     emptyList.prepend(2);
@@ -35,17 +36,20 @@ describe('prepend tests', () => {
 
 
 describe('remove tests', () => {
+  const testList = new LinkedList();
+  testList.append(7);
+  testList.append(12);
+  testList.append(9);
+  testList.remove(1);
   test('should delete node', () => {
-    const testList = new LinkedList();
-    testList.append(7);
-    testList.append(12);
-    testList.append(9);
     // console.log(testList);
-    testList.remove(1);
     expect(testList.head.value).toEqual(7);
     expect(testList.head.next.value).toEqual(9);
   });
-});
+  test('should decrement length when node is deleted', () => {
+    expect(testList.length).toEqual(2);
+  });
+}); 
 
 describe('reverse tests', () => {
   test('should reverse list order', () => {
@@ -59,26 +63,51 @@ describe('reverse tests', () => {
   });
 });
 
-// describe('serialize tests', () => {
-//   test('', () => {
-//     let linkedList = new LinkedList();
-//     linkedList.append(1);
-//     let actual = linkedList.serialize();
-//     expect(typeof actual).toBe('string');
-//   });
-// });
+describe('serialize tests', () => {
+  test('', () => {
+    let linkedList = new LinkedList();
+    linkedList.append(1);
+    let actual = linkedList.serialize();
+    expect(typeof actual).toBe('string');
+  });
+});
+
+describe('deserialize tests', () => {
+  test('', () => {
+    let linkedList = new LinkedList();
+    linkedList.append(1);
+    linkedList.append(2);
+    let jsonobject = linkedList.serialize();
+    let deLinkedList = new LinkedList();
+    deLinkedList = LinkedList.deserialize(jsonobject);
+    console.log(linkedList.length);
+    expect(linkedList.head.value).toEqual(deLinkedList.head.value);
+  });
+});
+
 describe('insert before tests', () => {
   let linkedList = new LinkedList();
   linkedList.append(1);
   linkedList.append(2);
   test('should insert 3 before 2', () => {
     linkedList.insertBefore(2, 3);
+    console.log(linkedList);
     expect(linkedList.head.next.value).toEqual(3);
   });
-  //QUESTION: I cant figure out why this test wont pass???
-  // test('shouldreturn null if current value passed in doesnt exist', () => {
-  //   linkedList.insertBefore(5, 5);
-  //   expect(linkedList.head.next.value).toBeNull;
-  // });
+  // QUESTION: I cant figure out why this test wont pass???
+  test('should throw error if value passed in doesnt exist', () => {
+    linkedList.insertBefore(5, 5);
+    console.log(linkedList.head.next.value);
+    expect(linkedList.head.next.value).toBeNull();
+  });
 });
 
+describe('insert after tests',() => {
+  let insertLinkedList = new LinkedList();
+  insertLinkedList.append(1);
+  insertLinkedList.append(2);
+  test('test should insert 3 after 1', () => {
+    insertLinkedList.insertAfter(1, 3);
+    expect(insertLinkedList.head.value).toEqual(1);
+  }); 
+});
