@@ -1,15 +1,13 @@
 'use strict';
 
 const Node = require('./node');
-// import Node from '.nd';
 
 class LinkedList {
   constructor() {
     this.head = null;
-    this.tail = null;
-    this.length = 0;
     this.prev = null;
     this.currentNode = null;
+    this.length = 0;
 
   }
 
@@ -23,8 +21,8 @@ class LinkedList {
       return;
     }
     let currentNode = this.head;
-    while (currentNode.next) { //as long as there is a .next i++ is the same as next in ll
-      currentNode = currentNode.next; //moves one space to the right
+    while (currentNode.next) { 
+      currentNode = currentNode.next; 
     }
     currentNode.next = newNode;
     this.length++;
@@ -33,7 +31,6 @@ class LinkedList {
   prepend(value) {
     this.head = new Node(value, this.head);
     this.length++;
-    // return this;
   }
   //remove is O(n)
   remove(offset) {
@@ -45,7 +42,6 @@ class LinkedList {
     } else if (this.length) {
       let currentNode = this.head;
       for (let i = 0; i < offset - 1; i++) {
-        // console.log(currentNode.next);
         currentNode = currentNode.next;
       }
 
@@ -78,56 +74,49 @@ class LinkedList {
 
   // serialize is O(1)
   serialize() {
-    // console.log(JSON.stringify(this));
     return JSON.stringify(this);
   }
 
   // deserialize is O(n)
-
-
-  //QUESTION: i think i need to use static, why is it saying it is reserved. Static methods are used when we need a function bound to a class, but not to any object of that class. 
   static deserialize(listObject) {
     let oldList = JSON.parse(listObject);
-    // console.log(oldList);
     let myNewList = new LinkedList();
-    myNewList.head = oldList.head;// fix this - section
-    myNewList.tail = oldList.tail;
+    myNewList.head = oldList.head;
     myNewList.length = oldList.length;
     myNewList.prev = oldList.prev;
     myNewList.currentNode = oldList.prev;
-    console.log(myNewList);
     return myNewList;
   }
 
   insertBefore(value, newVal) {
-    if (value === 0) {
+    if (this.head === null) {
       this.prepend(newVal);
-      return;
-    }
-    this.currentNode = this.head;
-    this.next = this.currentNode.next;
 
-    while (value !== this.currentNode.value && this.currentNode.next !== null) {
-      this.prev = this.currentNode;
-      this.currentNode = this.next;
-      console.log(this.currentNode);
-      this.next = this.currentNode.next;
+    } else {
+      let currentNode = this.head;
+      let prev = null;
+
+      while (value !== currentNode.value) {
+        prev = currentNode;
+        currentNode = currentNode.next;
+      }
+      let newNode = new Node(newVal);
+      newNode.next = prev.next;
+      prev.next = newNode;
+      this.length++;
     }
-    if (value !== this.currentNode.value) {
-      return null;
-    }
-    let newNode = new Node(value);
-    this.prev.next = newNode;
-    this.length++;
 
   }
 
   insertAfter(value, newVal) {
-    this.currentNode = this.head;
-    while (value !== this.currentNode.value) {
-      this.currentNode.next;
+    let currentNode = this.head;
+    while (value !== currentNode.value) {
+      currentNode = currentNode.next;
     }
-    this.currentNode.next = new Node(newVal);
+    let newNode = new Node(newVal);
+    newNode.next = currentNode.next;
+    currentNode.next = newNode;
+
     this.length++;
   }
   kthFromEnd(k) {
@@ -139,15 +128,9 @@ class LinkedList {
     for (let i = 0; i < this.length - (k + 1); i++) {
       this.currentNode = this.currentNode.next;
     }
-
     return this.currentNode.value;
   }
 }
 
 
-
-
-
-//add append, prepend, reverse, remove, serialize, deserialize 
-//add comments about big O for each method. 
 module.exports = LinkedList;

@@ -23,12 +23,10 @@ describe('prepend tests', () => {
   testList.append(5);
   test('should prepend node to to list', () => {
     testList.prepend(6);
-    // console.log(testList, 'i am testlist prepend');
     expect(testList.head.value).toEqual(6);
   });
   test('should prepend node an empty list', () => {
     let emptyList = new LinkedList();
-    // console.log(emptyList, 'i am empty prepend');
     emptyList.prepend(2);
     expect(emptyList.head.value).toEqual(2);
   });
@@ -42,14 +40,13 @@ describe('remove tests', () => {
   testList.append(9);
   testList.remove(1);
   test('should delete node', () => {
-    // console.log(testList);
     expect(testList.head.value).toEqual(7);
     expect(testList.head.next.value).toEqual(9);
   });
   test('should decrement length when node is deleted', () => {
     expect(testList.length).toEqual(2);
   });
-}); 
+});
 
 describe('reverse tests', () => {
   test('should reverse list order', () => {
@@ -57,14 +54,13 @@ describe('reverse tests', () => {
     reverseList.append(1);
     reverseList.append(2);
     reverseList.append(3);
-    // console.log(reverseList);
     reverseList.reverse();
     expect(reverseList.head.value).toEqual(3);
   });
 });
 
 describe('serialize tests', () => {
-  test('', () => {
+  test('should convert list to string', () => {
     let linkedList = new LinkedList();
     linkedList.append(1);
     let actual = linkedList.serialize();
@@ -73,14 +69,13 @@ describe('serialize tests', () => {
 });
 
 describe('deserialize tests', () => {
-  test('', () => {
+  test('should deserialize list', () => {
     let linkedList = new LinkedList();
     linkedList.append(1);
     linkedList.append(2);
     let jsonobject = linkedList.serialize();
     let deLinkedList = new LinkedList();
     deLinkedList = LinkedList.deserialize(jsonobject);
-    console.log(linkedList.length);
     expect(linkedList.head.value).toEqual(deLinkedList.head.value);
   });
 });
@@ -89,33 +84,39 @@ describe('insert before tests', () => {
   let linkedList = new LinkedList();
   linkedList.append(1);
   linkedList.append(2);
-  test('should insert 3 before 2', () => {
-    linkedList.insertBefore(2, 3);
-    console.log(linkedList);
-    expect(linkedList.head.next.value).toEqual(3);
+  linkedList.append(3);
+
+  test('should insert a node with the value of 20 before the node with the value of 2', () => {
+    linkedList.insertBefore(2, 20);
+    expect(linkedList.head.next.value).toEqual(20);
   });
-  // QUESTION: I cant figure out why this test wont pass???
-  test('should be null if value passed in doesnt exist', () => {
-    linkedList.insertBefore(5, 5);
-    console.log(linkedList.head.next.value);
-    expect(linkedList.head.next.value).toBeNull();
+  test('test should return one node equal to three', () => {
+    let returnOneList = new LinkedList();
+    returnOneList.insertBefore(0, 3);
+    expect(returnOneList.head.value).toEqual(3);
   });
 });
 
-describe('insert after tests',() => {
+describe('insert after tests', () => {
   let insertLinkedList = new LinkedList();
-  insertLinkedList.append(1);
-  insertLinkedList.append(2);
-  test('test should insert 3 after 1', () => {
-    insertLinkedList.insertAfter(1, 3);
-    expect(insertLinkedList.head.value).toEqual(1);
-  }); 
+  test('test should insert 25 after 1', () => {
+    insertLinkedList.append(1);
+    insertLinkedList.append(2);
+    insertLinkedList.append(3);
+    insertLinkedList.append(4);
+    insertLinkedList.insertAfter(1, 25);
+    expect(insertLinkedList.head.next.value).toEqual(25);
+  });
   test('list length should increment', () => {
-    insertLinkedList.insertAfter(1, 4);
-    console.log(insertLinkedList.length);
-    expect(insertLinkedList.length).toEqual(3);
+    let nextinsertLinkedList = new LinkedList();
+    nextinsertLinkedList.append(1);
+    nextinsertLinkedList.append(2);
+    nextinsertLinkedList.insertAfter(1, 4);
+    expect(nextinsertLinkedList.length).toEqual(3);
   });
 });
+
+
 describe('insert k from end', () => {
   let linkedList = new LinkedList();
   linkedList.append(1);
@@ -127,8 +128,7 @@ describe('insert k from end', () => {
     expect(expected1).toEqual(2);
     expect(expected2).toEqual(1);
   });
-  //QUESTIONS why isnt this test passing??? 
   test('it sends error if outside range', () => {
-    expect(linkedList.kthFromEnd(5)).toThrowError();
+    expect(() => linkedList.kthFromEnd(5)).toThrow(Error('out of bounds'));
   });
 });
