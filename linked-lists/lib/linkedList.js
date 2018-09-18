@@ -7,17 +7,19 @@ class LinkedList {
   constructor() {
     this.head = null;
     this.tail = null;
-    this.length = 1;
+    this.length = 0;
     this.prev = null;
     this.currentNode = null;
+
   }
 
-  //append is 0(n)
+  //append is 0(1)
   append(value) {
     let node = new Node(value);
 
     if (!this.head) {
       this.head = node;
+      this.length++;
       return this;
     }
     let currentNode = this.head;
@@ -56,15 +58,8 @@ class LinkedList {
       throw new Error('could not find a node to remove');
     }
   }
-  /* QUESTION::: I tried this first after i whiteboarded it, is it close to being a solution?
-   while (currentNode.next) {
-  //   if (currentNode.next.value === value);
-  //   console.log(value);
-  //   currentNode.next = currentNode.next.next;
-  //   this.length--;
-  // } */
 
-  //revers is 0(n)
+  //reverse is 0(n)
   reverse() {
     let currentNode = this.head;
     let prev = null;
@@ -81,59 +76,64 @@ class LinkedList {
   }
 
 
-  // // serialize is O(1)
-  // serialize() {
-  //   return JSON.stringify(this);
-  // }
+  // serialize is O(1)
+  serialize() {
+    // console.log(JSON.stringify(this));
+    return JSON.stringify(this);
+  }
 
-  //deserialize is O(n)
-  // deserialize() {
-  //   this.head = listItem.head;
-  //   this.tail = listItem.tail;
-  //   this.length = listItem.length;
+  // deserialize is O(n)
 
-  //   //QUESTION: i think i need to use static, why is it saying it is reserved. Static methods are used when we need a function bound to a class, but not to any object of that class. 
-  //   // static 
-  //   deserialize(listObject) {
-  //   let newList = JSON.parse(listObject);
-  //   return new LinkedList(newList);
-  // }
+
+  //QUESTION: i think i need to use static, why is it saying it is reserved. Static methods are used when we need a function bound to a class, but not to any object of that class. 
+  static deserialize(listObject) {
+    let oldList = JSON.parse(listObject);
+    // console.log(oldList);
+    let myNewList = new LinkedList();
+    myNewList.head = oldList.head;// fix this - section
+    myNewList.tail = oldList.tail;
+    myNewList.length = oldList.length;
+    myNewList.prev = oldList.prev;
+    myNewList.currentNode = oldList.prev;
+    console.log(myNewList);
+    return myNewList;
+  }
 
   insertBefore(value, newVal) {
     if (value === 0) {
       this.prepend(newVal);
-
+      return;
     }
     this.currentNode = this.head;
     this.next = this.currentNode.next;
 
-    while (value !== this.currentNode.value && this.currentNode !== this.tail) {
+    while (value !== this.currentNode.value && this.currentNode.next !== null) {
       this.prev = this.currentNode;
       this.currentNode = this.next;
+      console.log(this.currentNode);
       this.next = this.currentNode.next;
     }
-    
     if (value !== this.currentNode.value) {
-      throw new Error('not found');
+      return null;
     }
-    let newNode = new Node(newVal);
-    newNode.next = this.current;
+    let newNode = new Node(value);
     this.prev.next = newNode;
     this.length++;
 
   }
 
-
-
   insertAfter(value, newVal) {
-    let curr = this.head;
-    while (value !== curr.value) {
-      curr.next;
+    this.currentNode = this.head;
+    while (value !== this.currentNode.value) {
+      this.currentNode.next;
     }
-    curr.next = new Node(newVal, curr.next);
+    this.currentNode.next = new Node(newVal);
     this.length++;
   }
+
 }
+
+
 
 
 
