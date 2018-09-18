@@ -95,7 +95,7 @@ describe('insert before tests', () => {
     expect(linkedList.head.next.value).toEqual(3);
   });
   // QUESTION: I cant figure out why this test wont pass???
-  test('should throw error if value passed in doesnt exist', () => {
+  test('should be null if value passed in doesnt exist', () => {
     linkedList.insertBefore(5, 5);
     console.log(linkedList.head.next.value);
     expect(linkedList.head.next.value).toBeNull();
@@ -110,4 +110,9 @@ describe('insert after tests',() => {
     insertLinkedList.insertAfter(1, 3);
     expect(insertLinkedList.head.value).toEqual(1);
   }); 
+  test('list length should increment', () => {
+    insertLinkedList.insertAfter(1, 4);
+    console.log(insertLinkedList.length);
+    expect(insertLinkedList.length).toEqual(3);
+  });
 });

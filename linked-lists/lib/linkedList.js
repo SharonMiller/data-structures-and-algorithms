@@ -15,18 +15,18 @@ class LinkedList {
 
   //append is 0(1)
   append(value) {
-    let node = new Node(value);
+    let newNode = new Node(value);
 
     if (!this.head) {
-      this.head = node;
+      this.head = newNode;
       this.length++;
-      return this;
+      return;
     }
     let currentNode = this.head;
     while (currentNode.next) { //as long as there is a .next i++ is the same as next in ll
       currentNode = currentNode.next; //moves one space to the right
     }
-    currentNode.next = node;
+    currentNode.next = newNode;
     this.length++;
   }
 
