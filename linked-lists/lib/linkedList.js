@@ -130,7 +130,18 @@ class LinkedList {
     this.currentNode.next = new Node(newVal);
     this.length++;
   }
+  kthFromEnd(k) {
+    if (k > this.length - 1) {
+      throw new Error('out of bounds');
+    }
 
+    this.currentNode = this.head;
+    for (let i = 0; i < this.length - (k + 1); i++) {
+      this.currentNode = this.currentNode.next;
+    }
+
+    return this.currentNode.value;
+  }
 }
 
 

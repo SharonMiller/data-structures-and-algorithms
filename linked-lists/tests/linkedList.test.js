@@ -116,3 +116,19 @@ describe('insert after tests',() => {
     expect(insertLinkedList.length).toEqual(3);
   });
 });
+describe('insert k from end', () => {
+  let linkedList = new LinkedList();
+  linkedList.append(1);
+  linkedList.append(2);
+  linkedList.append(3);
+  test('retrieve the value of the node 1 from the end', () => {
+    let expected1 = linkedList.kthFromEnd(1);
+    let expected2 = linkedList.kthFromEnd(2);
+    expect(expected1).toEqual(2);
+    expect(expected2).toEqual(1);
+  });
+  //QUESTIONS why isnt this test passing??? 
+  test('it sends error if outside range', () => {
+    expect(linkedList.kthFromEnd(5)).toThrowError();
+  });
+});
