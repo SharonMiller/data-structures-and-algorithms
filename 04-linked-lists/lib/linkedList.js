@@ -38,6 +38,9 @@ class LinkedList {
     let curr = this.head;
     let afterCurrent = curr.next;
 
+    if(!this.length){
+      throw new Error('error: no nodes to remove');
+    }
     if (offset >= this.length) {
       return null;
     }
@@ -79,21 +82,6 @@ class LinkedList {
     
   }
 
-  //   } else if (this.length) {
-  //     let currentNode = this.head;
-  //     for (let i = 0; i < offset - 1; i++) {
-  //       currentNode = currentNode.next;
-  //     }
-
-  //     let node = currentNode.next;
-  //     currentNode.next = node.next;
-  //     node.next = null;
-  //     this.length--;
-  //     return node;
-  //   } else {
-  //     throw new Error('could not find a node to remove');
-  //   }
-  // }
 
   //reverse is 0(n)
   reverse() {
