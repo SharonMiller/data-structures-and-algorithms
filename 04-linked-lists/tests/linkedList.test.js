@@ -4,10 +4,12 @@ const LinkedList = require('../lib/linkedList');
 const Node = require('../lib/node');
 
 describe('linkedList.js', () => {
+
   test('constructor', () => {
     const testList = new LinkedList();
     expect(testList.head).toBeNull();
   });
+
   test('should append new node to end of list', () => {
     const testList = new LinkedList();
     testList.append(5);
@@ -19,12 +21,14 @@ describe('linkedList.js', () => {
 });
 
 describe('prepend tests', () => {
+
   const testList = new LinkedList();
   testList.append(5);
   test('should prepend node to to list', () => {
     testList.prepend(6);
     expect(testList.head.value).toEqual(6);
   });
+
   test('should prepend node an empty list', () => {
     let emptyList = new LinkedList();
     emptyList.prepend(2);
@@ -32,21 +36,54 @@ describe('prepend tests', () => {
   });
 });
 
+//test for nothing in remove
+//test with one node with passed in 0
+//test with one node passeds in greater than 0
+//test with two passed in remove 0, remove 1, remove 2
+//teast again with 3 in, remove 0,1,2,3
 
 describe('remove tests', () => {
-  const testList = new LinkedList();
-  testList.append(7);
-  testList.append(12);
-  testList.append(9);
-  testList.remove(1);
-  test('should delete node', () => {
-    expect(testList.head.value).toEqual(7);
-    expect(testList.head.next.value).toEqual(9);
+
+  test('should remove node in a list with only one node', () => {
+    let testList = new LinkedList();
+    testList.append(7);
+    let myResult = testList.remove(0);
+    expect(myResult.value).toEqual(7);
   });
-  test('should decrement length when node is deleted', () => {
-    expect(testList.length).toEqual(2);
+  test('should remove tail when 3 or more nodes exist', () => {
+    let testList = new LinkedList();
+    testList.append(1);
+    testList.append(2);
+    testList.append(3);
+    // testList.append(4);
+    let myResult = testList.remove(1);
+    expect(myResult.value).toEqual(2);
+  });
+  test('should remove head when offset is 0', () => {
+    let testList = new LinkedList();
+    testList.append(1);
+    testList.append(2);
+    let myResult = testList.remove(0);
+    expect(myResult.value).toEqual(1);
+  });
+  test('should remove offset 1 when there is only 2 nodes', () => {
+    let testList = new LinkedList();
+    testList.append(1);
+    testList.append(2);
+    let myResult = testList.remove(1);
+    expect(myResult.value).toEqual(2);
   });
 });
+
+//   test('should decrement length when node is deleted', () => {
+//     let testList = new LinkedList();
+//     testList.append(7);
+//     testList.append(12);
+//     testList.append(9);
+//     testList.remove(0);
+//     expect(testList.length).toEqual(2);
+//   });
+// });
 
 describe('reverse tests', () => {
   test('should reverse list order', () => {
@@ -194,7 +231,7 @@ describe('merge lists', () => {
     let expected = LinkedList.mergeLists(list1, list2);
     expect(expected.next.next.next.next.value).toEqual(5);
   });
-  
+
   test('will merge a  list with 3 nodes and null for the second arg and return the head value of merged list', () => {
     let list1 = new LinkedList();
     list1.append(1);
