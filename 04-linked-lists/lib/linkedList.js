@@ -34,30 +34,54 @@ class LinkedList {
   }
   //remove is O(n)
   remove(offset) {
-    if (offset === this.length && 0) {
+    let prev = null;
+    let curr = this.head;
+    let afterCurrent = curr.next;
+
+    if(!this.length){
+      throw new Error('error: no nodes to remove');
+    }
+    if (offset >= this.length) {
+      return null;
+    }
+
+    if (this.length === 1 && offset === 0) {
       let node = this.head;
       this.head = null;
       this.length--;
-
       return node;
-    } else if (this.length) {
-      let currentNode = this.head;
-      for (let i = 0; i < offset - 1; i++) {
-        currentNode = currentNode.next;
-      }
-
-      let node = currentNode.next;
-      console.log('node before:', node);
-      currentNode.next = node.next;
-      console.log('currentNode Next:', currentNode.next);
-      node.next = null;
-      this.length--;
-      console.log('returned node:', node);
-      return node;
-    } else {
-      throw new Error('could not find a node to remove');
     }
+    if (offset + 1 === this.length) {
+      while (afterCurrent.next) {
+        curr = afterCurrent;
+        afterCurrent = afterCurrent.next;
+      }
+      curr.next = null;
+      return afterCurrent;
+    }
+    if (this.length > 2) {
+      for (let i = 0; i < offset; i++) {
+        prev = curr;
+        curr = afterCurrent;
+        afterCurrent = afterCurrent.next;
+      }
+      prev.next = afterCurrent;
+      return curr;
+    }
+    if (offset === 0) {
+      this.head = afterCurrent;
+      curr.next = null;
+      return curr;
+    }
+    if (offset === 1) {
+      let result = curr.next;
+      this.head = afterCurrent;
+      curr.next = null;
+      return result;
+    } 
+    
   }
+
 
   //reverse is 0(n)
   reverse() {
