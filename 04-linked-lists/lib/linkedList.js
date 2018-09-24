@@ -62,10 +62,13 @@ class LinkedList {
     if (this.length > 2) {
       for (let i = 0; i < offset; i++) {
         prev = curr;
+        console.log(curr);
         curr = afterCurrent;
         afterCurrent = afterCurrent.next;
       }
       prev.next = afterCurrent;
+      console.log(prev);
+
       return curr;
     }
     if (offset === 0) {
