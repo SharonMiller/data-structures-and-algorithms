@@ -5,10 +5,7 @@ const Node = require('./node');
 class LinkedList {
   constructor() {
     this.head = null;
-    this.prev = null;
-    this.currentNode = null;
     this.length = 0;
-
   }
 
   //append is 0(1)
@@ -29,7 +26,13 @@ class LinkedList {
   }
 
   prepend(value) {
-    this.head = new Node(value, this.head);
+    let node = new Node(value);
+    if(this.length === 0){
+      this.head = node;
+    }else{
+      node.next = this.head;
+      this.head = node;
+    }
     this.length++;
   }
   //remove is O(n)
@@ -38,51 +41,61 @@ class LinkedList {
     let curr = this.head;
     let afterCurrent = curr.next;
 
-    if(!this.length){
+    if (!this.length) {
       throw new Error('error: no nodes to remove');
     }
+    //if the offset is greater than or equal to the length return null
     if (offset >= this.length) {
       return null;
     }
 
+    //if the length is 1 and offset 0 replae the head and point to second node
     if (this.length === 1 && offset === 0) {
       let node = this.head;
       this.head = null;
       this.length--;
       return node;
     }
+
+    //if offset is 0 make new node and assign it head
+    if (offset === 0) {
+      this.head = afterCurrent;
+      curr.next = null;
+      this.length--;
+      return curr;
+    }
+
+    //if the offset +1 is equal to the length
     if (offset + 1 === this.length) {
       while (afterCurrent.next) {
         curr = afterCurrent;
         afterCurrent = afterCurrent.next;
       }
       curr.next = null;
+      this.length--;
       return afterCurrent;
     }
+    //if there are 3 or more nodes 
     if (this.length > 2) {
       for (let i = 0; i < offset; i++) {
         prev = curr;
-        console.log(curr);
         curr = afterCurrent;
         afterCurrent = afterCurrent.next;
       }
       prev.next = afterCurrent;
-      console.log(prev);
+      this.length--;
 
       return curr;
     }
-    if (offset === 0) {
-      this.head = afterCurrent;
-      curr.next = null;
-      return curr;
-    }
+    //if the offset is one 
     if (offset === 1) {
       let result = curr.next;
-      this.head = afterCurrent;
+      this.head = afterCurrent.next;
       curr.next = null;
+      this.length--;
       return result;
-    } 
-    
+    }
+
   }
 
 
@@ -109,13 +122,13 @@ class LinkedList {
   }
 
   // deserialize is O(n)
-  static deserialize(listObject) {
-    let oldList = JSON.parse(listObject);
+  static deserialize(listString) {
+    // String -> LL
+    let oldList = JSON.parse(listString);
+    
     let myNewList = new LinkedList();
     myNewList.head = oldList.head;
     myNewList.length = oldList.length;
-    myNewList.prev = oldList.prev;
-    myNewList.currentNode = oldList.prev;
     return myNewList;
   }
 
@@ -150,16 +163,17 @@ class LinkedList {
 
     this.length++;
   }
+
   kthFromEnd(k) {
     if (k > this.length - 1) {
       throw new Error('out of bounds');
     }
 
-    this.currentNode = this.head;
+    let currentNode = this.head;
     for (let i = 0; i < this.length - (k + 1); i++) {
-      this.currentNode = this.currentNode.next;
+      currentNode = currentNode.next;
     }
-    return this.currentNode.value;
+    return currentNode.value;
   }
 
   static mergeLists(list1, list2) {

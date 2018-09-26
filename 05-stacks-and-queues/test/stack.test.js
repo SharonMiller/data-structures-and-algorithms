@@ -99,19 +99,19 @@ describe('Serialize', () => {
 
 describe('deserialize', () => {
   it('should keep its methods', () => {
-    let string = new Stack();
-    string.push(1);
-    string.push(2);
-    console.log(string);
-    string = string.serialize();
-    console.log(string);
+    let stack = new Stack();
+    stack.push(1);
+    stack.push(2);
+    console.log(stack);
+    let stackString = stack.serialize();
+    console.log(stackString);
 
 
-    let stack = Stack.deserialize(string);
+    stack = Stack.deserialize(stackString);
     console.log(stack);
     let actual = stack.pop();
     console.log(actual);
-    expect(actual).toBe(1);
+    expect(actual).toBe(2);
   });
 });
 
