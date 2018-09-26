@@ -47,9 +47,9 @@ describe('dequeue tests', () => {
 
   it('should return the value in the front of the queue', () => {
     let queue = new Queue();
-    queue.enqueue(5);
+    queue.enqueue(10);
     let actual = queue.dequeue();
-    let expected = 5;
+    let expected = 10;
     expect(actual).toBe(expected);
   });
 
@@ -57,6 +57,8 @@ describe('dequeue tests', () => {
     let queue = new Queue();
     queue.enqueue(5);
     queue.enqueue(6);
+    queue.enqueue(7);
+
     let actual = queue.dequeue();
     let expected = 5;
     expect(actual).toBe(expected);
@@ -66,9 +68,11 @@ describe('dequeue tests', () => {
     let queue = new Queue();
     queue.enqueue(5);
     queue.enqueue(6);
+    queue.enqueue(7);
+  
     queue.dequeue();
     let actual = queue.size;
-    let expected = 1;
+    let expected = 2;
     expect(actual).toBe(expected);
   });
 });

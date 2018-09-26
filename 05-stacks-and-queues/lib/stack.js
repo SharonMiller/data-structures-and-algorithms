@@ -9,8 +9,8 @@ class Stack {
       this.size = serializedStack.storage.length;
 
     } else {
-      this.size = 0;
       this.storage = new LinkedList();
+      this.size = this.storage.length;
 
     }
   }
@@ -20,13 +20,13 @@ class Stack {
       throw new Error('push method requires a value');
     }
     this.storage.prepend(value);
-    this.size++;
+    this.size = this.storage.length;
   }
 
   pop() {
     if (this.size) {
       let item = this.storage.remove(0).value;
-      this.size--;
+      this.size = this.storage.length;
       return item;
     }
   }
@@ -36,7 +36,8 @@ class Stack {
 
   static deserialize(string) {
     let stack = JSON.parse(string);
-    stack.storage = new LinkedList(stack.storage);
+    console.log('im in:', stack.storage);
+    stack.storage = LinkedList.deserialize(JSON.stringify(stack.storage));
     return new Stack(stack);
   }
 }

@@ -3,14 +3,14 @@
 const LinkedList = require('../../04-linked-lists/lib/linkedList');
 
 class Queue {
-  constructor(serQueue) {
-    if (serQueue) {
-      this.size = serQueue.size;
-      this.storage = serQueue.storage;
+  constructor(serializedQueue) {
+    if (serializedQueue) {
+      this.size = serializedQueue.size;
+      this.storage = serializedQueue.storage;
 
     } else {
-      this.size = 0;
       this.storage = new LinkedList();
+      this.size = this.storage.length;
     }
   }
 
@@ -20,14 +20,16 @@ class Queue {
       throw new Error('value required');
     }
     this.storage.append(value);
-    this.size++;
+    this.size = this.storage.length;
   }
 
   dequeue() {
     if (this.size) {
-      let frontValue = this.storage.remove(0).value;
-      this.size--;
-      return frontValue;
+      let frontValue = this.storage.remove(0);
+      console.log(frontValue.value);
+      this.size = this.storage.length;
+      console.log(this.size);
+      return frontValue.value;
     }
   }
   serialize() {
