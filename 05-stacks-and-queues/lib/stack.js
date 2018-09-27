@@ -36,7 +36,6 @@ class Stack {
 
   static deserialize(string) {
     let stack = JSON.parse(string);
-    console.log('im in:', stack.storage);
     stack.storage = LinkedList.deserialize(JSON.stringify(stack.storage));
     return new Stack(stack);
   }

@@ -22,7 +22,6 @@ describe('queue with stacks', () => {
     newQ.enqueue(1);
     newQ.enqueue(2);
     newQ.enqueue(3);
-    console.log(newQ);
     let actual = newQ.dequeue();
 
     expect(actual).toEqual(1);
