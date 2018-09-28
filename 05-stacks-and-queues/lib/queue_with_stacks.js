@@ -22,15 +22,11 @@ class QueueWithStacks {
       } else {
         while (this.stack1.size > 0) {
           let item = this.stack1.pop();
-          //this.stack1.size--;
           this.stack2.push(item);
-
-          //this.stack2.size++;
         }
       }
       
     }
-    //this.stack2.size--;
     let returnedItem = this.stack2.pop();
     this.size--;
     return returnedItem;

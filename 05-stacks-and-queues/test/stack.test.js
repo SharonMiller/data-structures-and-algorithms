@@ -102,15 +102,11 @@ describe('deserialize', () => {
     let stack = new Stack();
     stack.push(1);
     stack.push(2);
-    console.log(stack);
     let stackString = stack.serialize();
-    console.log(stackString);
 
 
     stack = Stack.deserialize(stackString);
-    console.log(stack);
     let actual = stack.pop();
-    console.log(actual);
     expect(actual).toBe(2);
   });
 });
