@@ -15,3 +15,7 @@ Stacks and Queues Data Structure
 - `dequeue` removes the last node in the queueu (first in first out)
 - `serialize()` stringifies the queue 
 - `queue.deserialize(serializedQueue)` creates a new Queue from a JSON stringified queue object
+
+## Animal Shelter 
+- `enqueue` takes a string `cat` or a `dog` and adds it to the queue shelter
+- `dequeue` takes a string. If the string is `cat` or `dog` it will return the requested animal if there is one in the queue. If a string is passed in that is not a cat or a dog, it will return the next cat or dog in line. If there are not items in the queue it will through an error. 
