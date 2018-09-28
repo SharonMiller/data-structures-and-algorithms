@@ -7,7 +7,7 @@ describe('animal shelter queue', () => {
   test('enqueued animal it showsin shelter', () => {
     let newShelter = new AnimalShelter();
     newShelter.enqueue('dog');
-
+    console.log('new shelter', newShelter);
     expect(newShelter.storage.head.value).toBe('dog');  
   });
 
