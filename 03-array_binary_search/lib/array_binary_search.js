@@ -18,7 +18,4 @@ exports.binarySearch = (arr, target) => {
     }
   }
   return -1;
-}
-
-// exports.binarySearch(test, 6);
-// console.log(binarySearch())
+};

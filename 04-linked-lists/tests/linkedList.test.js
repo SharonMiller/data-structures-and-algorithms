@@ -1,7 +1,6 @@
 'use strict';
 
 const LinkedList = require('../lib/linkedList');
-const Node = require('../lib/node');
 
 describe('linkedList.js', () => {
 
@@ -36,12 +35,6 @@ describe('prepend tests', () => {
   });
 });
 
-//test for nothing in remove
-//test with one node with passed in 0
-//test with one node passeds in greater than 0
-//test with two passed in remove 0, remove 1, remove 2
-//teast again with 3 in, remove 0,1,2,3
-
 describe('remove tests', () => {
 
   test('should remove node in a list with only one node', () => {
@@ -55,7 +48,6 @@ describe('remove tests', () => {
     testList.append(1);
     testList.append(2);
     testList.append(3);
-    // testList.append(4);
     let myResult = testList.remove(1);
     expect(myResult.value).toEqual(2);
   });
@@ -74,16 +66,6 @@ describe('remove tests', () => {
     expect(myResult.value).toEqual(2);
   });
 });
-
-//   test('should decrement length when node is deleted', () => {
-//     let testList = new LinkedList();
-//     testList.append(7);
-//     testList.append(12);
-//     testList.append(9);
-//     testList.remove(0);
-//     expect(testList.length).toEqual(2);
-//   });
-// });
 
 describe('reverse tests', () => {
   test('should reverse list order', () => {
@@ -215,7 +197,6 @@ describe('merge lists', () => {
     list2.append(6);
     //newlist should = 123456
     let expected = LinkedList.mergeLists(list1, list2);
-    console.log(expected);
     expect(expected.value).toEqual(1);
     expect(expected.next.next.next.next.next.value).toEqual(6);
   });
@@ -227,7 +208,6 @@ describe('merge lists', () => {
     list2.append(2);
     list2.append(4);
     list2.append(5);
-    //newlist should = 123456
     let expected = LinkedList.mergeLists(list1, list2);
     expect(expected.next.next.next.next.value).toEqual(5);
   });
