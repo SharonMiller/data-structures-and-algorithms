@@ -111,3 +111,15 @@ describe('deserialize', () => {
   });
 });
 
+describe('Stack peek', () => {
+
+  it('should return the last value', () => {
+    let stack = new Stack();
+    stack.push(5);
+    stack.push(6);
+    let actual = stack.peek();
+    let expected = 6;
+
+    expect(actual).toBe(expected);
+  });
+});

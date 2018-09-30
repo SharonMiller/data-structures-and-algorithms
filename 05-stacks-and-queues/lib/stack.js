@@ -30,6 +30,11 @@ class Stack {
       return item;
     }
   }
+  
+  peek() {
+    return this.storage.head.value;
+  }
+   
   serialize() {
     return JSON.stringify(this);
   }
