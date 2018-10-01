@@ -6,32 +6,70 @@ class BinarySearchTree {
   constructor(root) {
     this.root = root;
   }
+  //INSERT METHOD
   insert(node) {
     if (!this.root) {
       this.root = (node);
     } else {
-      //if there is a root do the insert logic and insert
       this._insert(this.root, node);
     }
   }
-  _insert(root, nodeToInsert) {
-    //1 - do I have to go left?
-    if (nodeToInsert.value < root.value) {
-      if (!root.left) {
-        root.left = nodeToInsert;
+  _insert(rootNode, nodeToInsert) {
+    if (nodeToInsert.value < rootNode.value) {
+      if (!rootNode.left) {
+        rootNode.left = nodeToInsert;
       } else {
-        this._insert(root.left, nodeToInsert);
+        this._insert(rootNode.left, nodeToInsert);
       }
-    } else if (!root.right) {
-      //2 can I have to go right?
-      root.right = nodeToInsert;
+    } else if (!rootNode.right) {
+      rootNode.right = nodeToInsert;
     } else {
-      //moving to the right branch
-      this._insert(root.right, nodeToInsert);
+      this._insert(rootNode.right, nodeToInsert);
     }
   }
 
-  /* tree traversls*/
+  //REMOVE METHOD
+  remove(node) {
+    if (!this.root) {
+      throw Error ('tree is empty');
+    }
+    if (!node) {
+      return null;
+    } else {
+      this._remove(this.root, node);
+    }
+  }
+  _remove(rootNode, value) {
+    if(value === rootNode.value) {
+      if(!rootNode.left && !rootNode.right) {
+        return null;
+      } else if (!rootNode.left) {
+        return rootNode.right;
+      } else if (!rootNode.right) {
+        return rootNode.left;
+      } 
+    }
+  }
+
+  //FIND METHOD
+  find(value) {
+    if (!this.root) {
+      return null;
+    }
+    return this._find(this.root, value);
+  }
+  _find(rootNode, value) {
+    if (!rootNode) {
+      return null;
+    } else if (rootNode.value === value) {
+      return rootNode;
+    } else if (rootNode.value < value) {
+      return this._find(rootNode.right, value);
+    }
+    return this._find(rootNode.left, value);
+
+  }
+  /* tree traversels*/
 
   //root left right
   preOrder() {
@@ -75,11 +113,27 @@ class BinarySearchTree {
     return results;
   }
 
-  _findMax(node) {
-    if (node.right === null) {
-      return node.value;
+  getMin(node) {
+    if (!node) {
+      node = this.root;
     }
+    while (node.left) {
+      node = node.left;
+    }
+    return node.data;
   }
+
+  getMax(node) {
+    if (!node) {
+      node = this.root;
+    }
+    while (node.right) {
+      node = node.right;
+    }
+    return node.data;
+  }
+
+
 }
 
 module.exports = BinarySearchTree;

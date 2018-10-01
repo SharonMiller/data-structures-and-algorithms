@@ -16,7 +16,7 @@ describe('BST input Tests', () => {
     bst.insert(new Node(9));
     expect(bst.root.right.value).toBe(9);
   });
-  
+
   test('nodes will insert in the proper place larger values right, lesser values left', () => {
     let bst = new BinarySearchTree();
     bst.insert(new Node(7)); //root
@@ -29,3 +29,61 @@ describe('BST input Tests', () => {
     expect(bst.root.left.right.value).toBe(5);
   });
 });
+
+describe('BST find Tests', () => {
+
+  test('if bst is empty, return null', () => {
+    let bst = new BinarySearchTree();
+    bst.find(7);
+    expect(bst.root).toBeNull;
+  });
+  test('find will locate the correct node', () => {
+    let bst = new BinarySearchTree();
+    bst.insert(new Node(7)); //root
+    bst.insert(new Node(9)); //root right
+    bst.insert(new Node(19)); // root right right    
+    bst.insert(new Node(4)); // root left 
+    bst.insert(new Node(5)); // root left right
+    bst.insert(new Node(18)); // root left right
+    let found19 = bst.find(19);
+    expect(found19.right).toBeNull;
+    expect(found19.left.value).toBe(18);
+  });
+});
+describe('BST remove Tests', () => {
+  test('if no node value, return null', () => {
+    let bst = new BinarySearchTree();
+    bst.insert(new Node(7)); //root
+    expect(bst.remove()).toBeNull;
+  });
+  test('if node has one child', () => {
+    let bst = new BinarySearchTree();
+    bst.insert(new Node(7)); //root
+    bst.insert(new Node(9)); //root right
+    bst.insert(new Node(19)); // root right right 
+    bst.remove(19);
+    expect(bst.root.right.right.value).toBeNull;
+  });
+  test('if bst is empty, return null', () => {
+    let bst = new BinarySearchTree();
+    expect(bst.remove(1)).toThrowError();
+  });
+
+
+});
+
+// describe('BST max and min tests', () => {
+//   test('if finds the max value', () => {
+//     let bst = new BinarySearchTree();
+//     bst.insert(new Node(7)); //root
+//     bst.insert(new Node(9)); //root right
+//     bst.insert(new Node(19)); // root right right    
+//     bst.insert(new Node(4)); // root left 
+//     bst.insert(new Node(5)); // root left right
+//     bst.insert(new Node(18)); // root left right
+//     let expected = bst.getMax(7);
+//     console.log(expected);
+//     expect(expected.root.value).toBe(19);
+//   });
+
+// });
