@@ -31,24 +31,48 @@ class BinarySearchTree {
   //REMOVE METHOD
   remove(node) {
     if (!this.root) {
-      throw Error ('tree is empty');
+      throw Error('tree is empty');
     }
     if (!node) {
       return null;
     } else {
-      this._remove(this.root, node);
+      this._remove(node);
     }
   }
-  _remove(rootNode, value) {
-    if(value === rootNode.value) {
-      if(!rootNode.left && !rootNode.right) {
-        return null;
-      } else if (!rootNode.left) {
-        return rootNode.right;
-      } else if (!rootNode.right) {
-        return rootNode.left;
-      } 
+  _remove(node) {
+    let result = node;
+    //if replacing the first root node- use getmin or getmax
+    let nodeToSwapWithRoot;
+    if (!node.right) { //no right side root
+      node = node.left;
+    } else if (!node.left) { //no left side of root
+      node = node.right;
+    } else if (node.right) {
+      nodeToSwapWithRoot = this.getMinNode(node.right);
+
+      //swap node with nodeToSwapWithRoot
+      console.log(nodeToSwapWithRoot);
+      let originalValue = node.value;
+      node.value = nodeToSwapWithRoot.value;
+      if (this.root.value === originalValue) {
+        this.root = node;
+      }
+      console.log(node.value);
+
+      //delete nodeToSwapWithRoot
+      if (nodeToSwapWithRoot.right) {
+        nodeToSwapWithRoot = nodeToSwapWithRoot.right;
+      } else {
+        nodeToSwapWithRoot = null;
+      }
+      //deletes the node by pointing the current to null but same as partent.left = null. 
+    } else {
+      this.root = null;
     }
+
+
+
+    return result;
   }
 
   //FIND METHOD
@@ -113,24 +137,24 @@ class BinarySearchTree {
     return results;
   }
 
-  getMin(node) {
+  getMinNode(node) {
     if (!node) {
       node = this.root;
     }
     while (node.left) {
       node = node.left;
     }
-    return node.data;
+    return node;
   }
 
-  getMax(node) {
+  getMaxNode(node) {
     if (!node) {
       node = this.root;
     }
     while (node.right) {
       node = node.right;
     }
-    return node.data;
+    return node;
   }
 
 
