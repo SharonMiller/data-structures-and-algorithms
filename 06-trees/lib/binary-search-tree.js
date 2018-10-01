@@ -3,35 +3,35 @@
 const Node = require('./node.js');
 
 class BinarySearchTree {
-  constructor(root = null) {
+  constructor(root) {
     this.root = root;
   }
-  insert(nodeToInsert) {
+  insert(node) {
     if (!this.root) {
-      this.root = nodeToInsert;
+      this.root = (node);
     } else {
       //if there is a root do the insert logic and insert
-      this._insert(this.root, nodeToInsert);
+      this._insert(this.root, node);
     }
   }
-  // _insert(root, nodeToInsert) {
-  //   //1 - do I have to go left?
-  //   if (nodeToInsert.value < root.value) {
-  //     if(!root.left) {
-  //       root.left = nodeToInsert;
-  //     }else{
-  //       this._insert(root.left, nodeToInsert);
-  //     }
-  //   } else if (!root.right) {
-  //     //2 can I have to go right?
-  //     root.right = nodeToInsert;
-  //   } else { 
-  //     //moving to the right branch
-  //     this._insert(root.right, nodeToInsert);
-  //   }
-  // }
+  _insert(root, nodeToInsert) {
+    //1 - do I have to go left?
+    if (nodeToInsert.value < root.value) {
+      if (!root.left) {
+        root.left = nodeToInsert;
+      } else {
+        this._insert(root.left, nodeToInsert);
+      }
+    } else if (!root.right) {
+      //2 can I have to go right?
+      root.right = nodeToInsert;
+    } else {
+      //moving to the right branch
+      this._insert(root.right, nodeToInsert);
+    }
+  }
 
-  /* helper functions */
+  /* tree traversls*/
 
   //root left right
   preOrder() {
@@ -73,6 +73,12 @@ class BinarySearchTree {
     _walk(this.root);
 
     return results;
+  }
+
+  _findMax(node) {
+    if (node.right === null) {
+      return node.value;
+    }
   }
 }
 
