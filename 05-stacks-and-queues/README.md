@@ -19,3 +19,12 @@ Stacks and Queues Data Structure
 ## Animal Shelter 
 - `enqueue` takes a string `cat` or a `dog` and adds it to the queue shelter
 - `dequeue` takes a string. If the string is `cat` or `dog` it will return the requested animal if there is one in the queue. If a string is passed in that is not a cat or a dog, it will return the next cat or dog in line. If there are not items in the queue it will through an error. 
+
+## Multi Bracket Validation
+This function takes a string as its only argument, and should returns a boolean representing whether or not the brackets in the string are balanced. There are 3 types of brackets:
+
+Round Brackets : ()
+Square Brackets : []
+Curly Brackets : {}
+
+
