@@ -1,0 +1,19 @@
+{
+  "name": "06-trees",
+  "version": "1.0.0",
+  "description": "Tree Data Structures",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Sharon Miller <sharonmillerdev@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^5.6.1",
+    "jest": "^23.6.0"
+  }
+}
