@@ -56,7 +56,7 @@ describe('BST remove Tests', () => {
     bst.insert(new Node(7)); //root
     expect(bst.remove()).toBeNull;
   });
-  test('if node has one child', () => {
+  test('if node has a left and right child', () => {
     let bst = new BinarySearchTree();
     let seven = new Node(7);
     let five = new Node(5);
@@ -69,9 +69,23 @@ describe('BST remove Tests', () => {
 
     expect(bst.root.value).toBe(19);
   });
-  // test('if bst is empty, return null', () => {
+  // test('if node with a paretn has a left and right tree', () => {
   //   let bst = new BinarySearchTree();
-  //   expect(bst.remove()).toBeNull;
+  //   let seven = new Node(7);
+  //   let nine = new Node(9);
+  //   let nineteen = new Node(19);
+  //   bst.insert(seven); //root
+  //   bst.insert(nine); //root right
+  //   bst.insert(nineteen); // root right right 
+  //   console.log(seven);
+  //   bst.remove(nine);
+
+  //   expect(bst.root.value.right).toBe(19);
+  // });
+  
+  // test('if bst is empty, return error', () => {
+  //   let bst = new BinarySearchTree();
+  //   expect(bst.remove()).toThrowError('tree is empty');
   // });
 
 
@@ -92,3 +106,28 @@ describe('BST max and min tests', () => {
   });
 
 });
+
+describe('Serialize and Deserialize tests', () => {
+  test('covert array to buffer and see result should be buffer', () => {
+    let bst = new BinarySearchTree();
+    bst.insert(new Node(7)); //root
+    bst.insert(new Node(9)); //root right
+    bst.insert(new Node(6)); // root right right  
+    expect(bst.serialize()).toBeInstanceOf(Buffer);
+  });
+
+  test('convert buffer to tree  and result should be a tree', () => {
+    let bst = new BinarySearchTree();
+    bst.insert(new Node(7)); //root
+    bst.insert(new Node(9)); //root right
+    bst.insert(new Node(6)); // root right right  
+    let serial = bst.serialize(); 
+    let deserTree = bst.deserialize(serial);
+    console.log(deserTree);
+    expect(deserTree.root.right.value).toBe(9);
+  });
+
+});
+
+
+//serialize test - take an array convert it to a buffer see if the serialize

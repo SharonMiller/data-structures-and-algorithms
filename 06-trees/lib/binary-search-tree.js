@@ -27,6 +27,7 @@ class BinarySearchTree {
       this._insert(rootNode.right, nodeToInsert);
     }
   }
+  //will need to add a tracker for parent 
 
   //REMOVE METHOD
   remove(node) {
@@ -53,10 +54,11 @@ class BinarySearchTree {
       //swap node with nodeToSwapWithRoot
       console.log(nodeToSwapWithRoot);
       let originalValue = node.value;
-      node.value = nodeToSwapWithRoot.value;
       if (this.root.value === originalValue) {
         this.root = node;
       }
+      node.value = nodeToSwapWithRoot.value;
+
       console.log(node.value);
 
       //delete nodeToSwapWithRoot
@@ -75,6 +77,7 @@ class BinarySearchTree {
     return result;
   }
 
+
   //FIND METHOD
   find(value) {
     if (!this.root) {
@@ -92,6 +95,30 @@ class BinarySearchTree {
     }
     return this._find(rootNode.left, value);
 
+  }
+
+  //SERIALIZE
+  serialize() {
+    //tree - array
+    let array = this.preOrder();
+
+    //array - buffer
+    let buffer = Buffer.from(array);
+    // return buffer
+    return buffer;
+  }
+
+  deserialize(buffer) {
+    //buffer to array
+    let array = Array.from(buffer);
+    //array to tree
+    console.log(array);
+    array.forEach(val => {
+      let node = new Node(val);
+      this.insert(node);
+      console.log(this);
+    });
+    return this;
   }
   /* tree traversels*/
 
