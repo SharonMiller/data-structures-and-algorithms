@@ -125,6 +125,22 @@ describe('Serialize and Deserialize tests', () => {
   });
 
 });
+describe('Breadth First Search', () => {
+
+  test('will search left to right', () => {
+    let newTree = new BinarySearchTree();
+    let seven = new Node(7);
+    let twenty = new Node(20);
+    let four = new Node(4);
+    newTree.root = seven; 
+    seven.right = twenty;
+    seven.left = four;
+    let expected = [7, 4, 20];
+    let results = newTree.breadthFirst();
+    expect(results).toEqual(expected);
+  });
+
+});
 
 
-//serialize test - take an array convert it to a buffer see if the serialize
+//serialize test - take an array convert it to a buffer see if t
