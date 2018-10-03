@@ -121,7 +121,6 @@ describe('Serialize and Deserialize tests', () => {
     bst.insert(new Node(6)); // root right right  
     let serial = bst.serialize(); 
     let deserTree = bst.deserialize(serial);
-    console.log(deserTree);
     expect(deserTree.root.right.value).toBe(9);
   });
 
