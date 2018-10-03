@@ -64,7 +64,6 @@ describe('BST remove Tests', () => {
     bst.insert(seven); //root
     bst.insert(five); //root right
     bst.insert(nineteen); // root right right 
-    console.log(seven);
     bst.remove(seven);
 
     expect(bst.root.value).toBe(19);
@@ -101,7 +100,6 @@ describe('BST max and min tests', () => {
     bst.insert(new Node(5)); // root left right
     bst.insert(new Node(18)); // root left right
     let expected = bst.getMaxNode();
-    console.log(expected);
     expect(expected.value).toBe(19);
   });
 
@@ -123,7 +121,6 @@ describe('Serialize and Deserialize tests', () => {
     bst.insert(new Node(6)); // root right right  
     let serial = bst.serialize(); 
     let deserTree = bst.deserialize(serial);
-    console.log(deserTree);
     expect(deserTree.root.right.value).toBe(9);
   });
 

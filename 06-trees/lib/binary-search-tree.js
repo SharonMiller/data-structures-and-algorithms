@@ -52,14 +52,12 @@ class BinarySearchTree {
       nodeToSwapWithRoot = this.getMinNode(node.right);
 
       //swap node with nodeToSwapWithRoot
-      console.log(nodeToSwapWithRoot);
       let originalValue = node.value;
       if (this.root.value === originalValue) {
         this.root = node;
       }
       node.value = nodeToSwapWithRoot.value;
 
-      console.log(node.value);
 
       //delete nodeToSwapWithRoot
       if (nodeToSwapWithRoot.right) {
@@ -112,11 +110,9 @@ class BinarySearchTree {
     //buffer to array
     let array = Array.from(buffer);
     //array to tree
-    console.log(array);
     array.forEach(val => {
       let node = new Node(val);
       this.insert(node);
-      console.log(this);
     });
     return this;
   }
