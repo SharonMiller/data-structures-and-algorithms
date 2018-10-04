@@ -142,5 +142,28 @@ describe('Breadth First Search', () => {
 
 });
 
+describe('find Max Value in a binary tree', () => {
+
+  test('will find the maximum value in a binary search tree', () => {
+    let newTree = new BinarySearchTree();
+    let seven = new Node(7);
+    let twenty = new Node(20);
+    let four = new Node(4);
+    let five = new Node(5);
+    let twelve = new Node(12);
+    let thirty = new Node(30);
+    newTree.root = seven; 
+    seven.right = twenty;
+    seven.left = four;
+    four.left = five;
+    four.right = twelve;
+    twelve.right = thirty;
+    let expected = 30;
+    let results = BinarySearchTree.getMaxValue(newTree);
+    expect(results).toEqual(expected);
+  });
+
+});
+
 
 //serialize test - take an array convert it to a buffer see if t
