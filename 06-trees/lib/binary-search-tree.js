@@ -190,19 +190,34 @@ class BinarySearchTree {
 
     console.log(deQ.value);
     results.push(deQ.value);
-    if (deQ.left) { newQueue.enqueue(deQ.left);}
-    if (deQ.right) { newQueue.enqueue(deQ.right);}
+    if (deQ.left) { newQueue.enqueue(deQ.left); }
+    if (deQ.right) { newQueue.enqueue(deQ.right); }
     while (newQueue.size) {
       deQ = newQueue.dequeue();
       results.push(deQ.value);
-      if (deQ.left) { newQueue.enqueue(deQ.left);}
-      if (deQ.right) { newQueue.enqueue(deQ.right);}
+      if (deQ.left) { newQueue.enqueue(deQ.left); }
+      if (deQ.right) { newQueue.enqueue(deQ.right); }
     }
 
     return results;
   }
+  static getMaxValue(tree) {
+    let maxVal = tree.root.value;
 
-
+    let _walk = (node) => {
+      if (node.value > maxVal) {
+        maxVal = node.value;
+      }
+      if (node.left) {
+        _walk(node.left);
+      }
+      if (node.right) {
+        _walk(node.right);
+      }
+    };
+    _walk(tree.root);
+    return maxVal;
+  }
 }
 
 module.exports = BinarySearchTree;
