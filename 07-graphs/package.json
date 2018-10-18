@@ -1,0 +1,17 @@
+{
+  "name": "07-graphs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "breadth_first.js",
+  "scripts": {
+    "test": "jest **/*.test.js",
+    "lint": "eslint **/.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "eslint": "^5.7.0",
+    "jest": "^23.6.0"
+  }
+}
