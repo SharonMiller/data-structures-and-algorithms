@@ -35,6 +35,45 @@ describe('tests for breadth first traversal', () => {
     expect(graph.breadthFirstTraversal('a')).toBeInstanceOf(Array);
 
   });
+});
+
+describe('depth first search testing', () => {
+
+  test('will return an array', () => {
+    let graph = new Graph();
+    graph.addVertex('a', ['c', 'b']);
+    graph.addVertex('b', ['a', 'c']);
+    graph.addVertex('c', ['b', 'a']);
 
 
+    let traversal = graph.depthFirstTraversal('b');
+    expect(traversal).toBeInstanceOf(Array);
+
+  });
+
+  test('will return an array', () => {
+    let graph = new Graph();
+    graph.addVertex('a', ['b']);
+    graph.addVertex('b', ['a']);
+
+    let traversal = graph.depthFirstTraversal('b');
+    expect(traversal).toBeInstanceOf(Array);
+
+  });
+
+  test('should throw an error when there is a missing vertex', () => {
+    let graph = new Graph();
+    graph.vertices = {
+      'a': ['b', 'c', 'd'],
+      'b': ['a'],
+      'c': ['a', 'd'],
+      'd': ['a', 'c'],
+    };
+
+    let traversal = graph.depthFirstTraversal('a');
+    let expected = ['a', 'd', 'c', 'b'];
+
+    expect(traversal).toEqual(expected);
+
+  });
 });
