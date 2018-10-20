@@ -104,4 +104,12 @@ describe('hashmap tests', () => {
     expect(deserialized).toBeInstanceOf(HashMap);
   });
 
+  test('should deserialize a serialized HashMap and return the value', () => {
+    let hashMap = new HashMap(8);
+    hashMap.set('sharon', 10);
+    let serialized = hashMap.serialize();
+    let deserializedHMap = HashMap.deserialize(serialized);
+    let actual = deserializedHMap.get('sharon');
+    expect(actual).toBe(10);
+  });
 });
