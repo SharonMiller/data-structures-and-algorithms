@@ -68,24 +68,6 @@ describe('BST remove Tests', () => {
 
     expect(bst.root.value).toBe(19);
   });
-  // test('if node with a paretn has a left and right tree', () => {
-  //   let bst = new BinarySearchTree();
-  //   let seven = new Node(7);
-  //   let nine = new Node(9);
-  //   let nineteen = new Node(19);
-  //   bst.insert(seven); //root
-  //   bst.insert(nine); //root right
-  //   bst.insert(nineteen); // root right right 
-  //   console.log(seven);
-  //   bst.remove(nine);
-
-  //   expect(bst.root.value.right).toBe(19);
-  // });
-  
-  // test('if bst is empty, return error', () => {
-  //   let bst = new BinarySearchTree();
-  //   expect(bst.remove()).toThrowError('tree is empty');
-  // });
 
 
 });
@@ -119,7 +101,7 @@ describe('Serialize and Deserialize tests', () => {
     bst.insert(new Node(7)); //root
     bst.insert(new Node(9)); //root right
     bst.insert(new Node(6)); // root right right  
-    let serial = bst.serialize(); 
+    let serial = bst.serialize();
     let deserTree = bst.deserialize(serial);
     expect(deserTree.root.right.value).toBe(9);
   });
@@ -132,7 +114,7 @@ describe('Breadth First Search', () => {
     let seven = new Node(7);
     let twenty = new Node(20);
     let four = new Node(4);
-    newTree.root = seven; 
+    newTree.root = seven;
     seven.right = twenty;
     seven.left = four;
     let expected = [7, 4, 20];
@@ -152,7 +134,7 @@ describe('find Max Value in a binary tree', () => {
     let five = new Node(5);
     let twelve = new Node(12);
     let thirty = new Node(30);
-    newTree.root = seven; 
+    newTree.root = seven;
     seven.right = twenty;
     seven.left = four;
     four.left = five;

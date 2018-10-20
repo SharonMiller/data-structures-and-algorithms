@@ -188,7 +188,6 @@ class BinarySearchTree {
     newQueue.enqueue(this.root);
     let deQ = newQueue.dequeue();
 
-    console.log(deQ.value);
     results.push(deQ.value);
     if (deQ.left) { newQueue.enqueue(deQ.left); }
     if (deQ.right) { newQueue.enqueue(deQ.right); }
