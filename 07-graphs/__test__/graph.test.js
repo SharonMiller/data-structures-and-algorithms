@@ -1,7 +1,6 @@
 'use strict';
 
 const Graph = require('../lib/graph_traverse');
-const WeightedGraph = require('../lib/graph_edge');
 
 describe('tests for breadth first traversal', () => {
   test('creates instance of a graph', () => {
