@@ -72,7 +72,6 @@ class HashMap {
   //we are calling this static because it is a method on the Class not on an instance - because once it has been serialized it can no longer be used on an instance because it is a string.
   static deserialize(serializedHMap) {
     let deserializedHMap = JSON.parse(serializedHMap);
-    console.log(deserializedHMap.length);
     let result = new HashMap(deserializedHMap.length);
     result.buckets = deserializedHMap;
 
@@ -95,18 +94,6 @@ class HashMap {
     });
 
     console.log(msg);
-  }
-
-  repeatedWord(book) {
-    let words = book.split('');
-    let wordCounts = {};
-
-    for (let i = 0; i < words.length; i++)
-      if (wordCounts[words[i]]) {
-        return words;
-      } else {
-        wordCounts[words[i]] = 1;
-      }
   }
 
 }

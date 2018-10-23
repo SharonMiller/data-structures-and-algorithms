@@ -100,7 +100,6 @@ describe('hashmap tests', () => {
     hashMap.set('sharon', 10);
     let serialized = hashMap.serialize();
     let deserialized = HashMap.deserialize(serialized);
-    console.log(deserialized);
     expect(deserialized).toBeInstanceOf(HashMap);
   });
 

@@ -65,7 +65,6 @@ class Graph {
         stack.pop();
       }
     }
-    console.log(this.vertices);
     return visited;
 
 
