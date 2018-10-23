@@ -1,18 +1,21 @@
 'use strict';
 
 
-let repeatedWord = book => {
+const repeatedWord = (book) => {
+  if (typeof book !== 'string') { throw new Error('Error: function requires a string'); }
   let words = book.split(' ');
   let wordCounts = {};
 
-  for (let i = 0; i < words.length; i++)
+  for (let i = 0; i < words.length; i++) {
     if (wordCounts[words[i]]) {
       return words[i];
     } else {
       wordCounts[words[i]] = 1;
     }
+  }
+  return ('There were not any repeated words');
 };
 
 
 
-export default repeatedWord();
+module.exports = repeatedWord;
