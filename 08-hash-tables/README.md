@@ -8,3 +8,5 @@ Hash Map Constructor with the following methods:
 - `remove(key)` takes in a key as a string and removes that key
 - `serialize(hashMap)` takes a has map and coverts it to a string
 - `deserialize(string)` this is a static method on the HashMap class, it takes a serialized hashmap in string form and converts it back into a hashMap
+
+- `repeatedWord(string)` is a function which takes a string of words and returns the first repeated word in the string.

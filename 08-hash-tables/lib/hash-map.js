@@ -96,6 +96,21 @@ class HashMap {
 
     console.log(msg);
   }
+
+  repeatedWord(book) {
+    let words = book.split('');
+    let wordCounts = {};
+
+    for (let i = 0; i < words.length; i++)
+      if (wordCounts[words[i]]) {
+        return words;
+      } else {
+        wordCounts[words[i]] = 1;
+      }
+  }
+
 }
+
+
 
 module.exports = HashMap;
