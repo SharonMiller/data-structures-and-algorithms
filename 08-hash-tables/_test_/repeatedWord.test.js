@@ -1,6 +1,6 @@
 'use strict';
 
-const repeatedWord = require('../lib/reapeatedWord');
+const repeatedWord = require('../lib/repeatedWord');
 
 
 // let repeatedWord = book => {
