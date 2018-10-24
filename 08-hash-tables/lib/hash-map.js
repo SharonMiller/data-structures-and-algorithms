@@ -17,17 +17,19 @@ class HashMap {
     }, 0) % this.bucketCount;
   }
 
-  set(key, value) {
-    if (arguments.length !== 2) {
+  set(key, value, summedHash) {
+    if (arguments.length < 2) {
       throw new Error('must pass in a key and a value');
     }
     let hash;
-    try {
-      hash = this.sumHash(key);
-    } catch (e) {
-      throw e;
+    if (summedHash) {
+      try {
+        hash = this.sumHash(key);
+      } catch (e) {
+        throw e;
+      }
+      this.buckets[hash] = { [key]: value };
     }
-    this.buckets[hash] = { [key]: value };
   }
 
   get(key) {
@@ -75,11 +77,6 @@ class HashMap {
     let result = new HashMap(deserializedHMap.length);
     result.buckets = deserializedHMap;
 
-
-    //look back at constructor and set the properties to the new instance of the class
-    // result.bucketCount = deserializedHMap.bucketcount;
-    // result.buckets = deserializedHMap.buckets;
-
     return result;
     //to deserialize I need to call HashMap.deserialize(newmap); 
   }
@@ -94,6 +91,20 @@ class HashMap {
     });
 
     console.log(msg);
+  }
+
+  static leftJoin(syn, ant) {
+    const result = new HashMap(syn.bucketCount);
+    for (let key in syn) {
+      result.set(key, syn[key]);
+      if (ant[key]) {
+        result.update(key, [syn[key], ant[key]]);
+      } else {
+        result.update(key, [syn[key], null]);
+      }
+      return result;
+    }
+
   }
 
 }

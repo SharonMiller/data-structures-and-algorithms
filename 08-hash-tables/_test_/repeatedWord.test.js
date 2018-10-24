@@ -2,18 +2,6 @@
 
 const repeatedWord = require('../lib/repeatedWord');
 
-
-// let repeatedWord = book => {
-//   let words = book.split(' ');
-//   let wordCounts = {};
-
-//   for (let i = 0; i < words.length; i++)
-//     if (wordCounts[words[i]]) {
-//       return words[i];
-//     } else {
-//       wordCounts[words[i]] = 1;
-//     }
-// };
 describe('tests for repeatedWords', () => {
   test('should take a string and return a string', () => {
     let book = 'once apon a time there was a princess';
