@@ -34,14 +34,14 @@ describe('hashmap tests', () => {
 
   test('should create add a hashed key and value to an instance of a hashmap', () => {
     let hashMap = new HashMap(8);
-    hashMap.set('sharon', 10);
+    hashMap.set('sharon', 10, true);
     let actual = hashMap.buckets[3];
     expect(actual).toBeInstanceOf(Object);
   });
 
   test('should throw error when key is not a string', () => {
     let hashMap = new HashMap(8);
-    expect(() => hashMap.set(4, 2)).toThrowError();
+    expect(() => hashMap.set(4, 2, true)).toThrowError();
   });
 
   test('should throw an error when there are not 2 arguments', () => {
@@ -57,22 +57,22 @@ describe('hashmap tests', () => {
   });
   test('should create add a hashed key and value to an instance of a hashmap', () => {
     let hashMap = new HashMap(8);
-    hashMap.set('sharon', 10);
+    hashMap.set('sharon', 10, true);
     let actual = hashMap.get('sharon');
     expect(actual).toBe(10);
   });
 
   test('should return second value set and override the first value', () => {
     let hashMap = new HashMap(8);
-    hashMap.set('sharon', 10);
-    hashMap.set('sharon', 11);
+    hashMap.set('sharon', 10, true);
+    hashMap.set('sharon', 11, true);
     let actual = hashMap.get('sharon');
     expect(actual).toBe(11);
   });
 
   test('should find and remove a value', () => {
     let hashMap = new HashMap(8);
-    hashMap.set('sharon', 10);
+    hashMap.set('sharon', 10, true);
     hashMap.remove('sharon');
     expect(hashMap.buckets[3]).toBe(null);
   });
@@ -105,10 +105,11 @@ describe('hashmap tests', () => {
 
   test('should deserialize a serialized HashMap and return the value', () => {
     let hashMap = new HashMap(8);
-    hashMap.set('sharon', 10);
+    hashMap.set('sharon', 10, true);
     let serialized = hashMap.serialize();
     let deserializedHMap = HashMap.deserialize(serialized);
     let actual = deserializedHMap.get('sharon');
     expect(actual).toBe(10);
   });
 });
+
