@@ -10,3 +10,5 @@ Hash Map Constructor with the following methods:
 - `deserialize(string)` this is a static method on the HashMap class, it takes a serialized hashmap in string form and converts it back into a hashMap
 
 - `repeatedWord(string)` is a function which takes a string of words and returns the first repeated word in the string.
+
+- `leftJoin(has1, hash2)` is a function which takes two hashmaps and returns one with the values in an array of the matching key.
