@@ -15,9 +15,7 @@ describe(' tree intersection function', () => {
     let treeB = new BinarySearchTree(new Node(5));
     treeB.insert(new Node(4));
 
-    console.log(treeA);
     let actual = treeIntersection(treeA, treeB);
-    console.log(actual);
 
     expect(actual).toEqual([5]);
 
