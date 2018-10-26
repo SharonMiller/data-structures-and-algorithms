@@ -12,3 +12,5 @@ Hash Map Constructor with the following methods:
 - `repeatedWord(string)` is a function which takes a string of words and returns the first repeated word in the string.
 
 - `leftJoin(has1, hash2)` is a function which takes two hashmaps and returns one with the values in an array of the matching key.
+
+- `treeIntersection(tree1, tree2)` is a function which takes in two trees and returns all of the intersections in which they intersect. 

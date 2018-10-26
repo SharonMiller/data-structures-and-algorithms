@@ -161,6 +161,19 @@ class BinarySearchTree {
     return results;
   }
 
+  inOrderWalk(node, cb) {
+    if (node.left) {
+      this.inOrderWalk(node.left, cb);
+    }
+
+    cb(node);
+
+    if (node.right) {
+      this.inOrderWalk(node.right, cb);
+    }
+  }
+
+
   getMinNode(node) {
     if (!node) {
       node = this.root;
