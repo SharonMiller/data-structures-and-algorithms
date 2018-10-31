@@ -10,7 +10,6 @@ let insertionSort = (array, compare) => {
       j--;
     }
     array[j + 1] = tempIndex;
-    console.log(array);
   }
 
   return array;
